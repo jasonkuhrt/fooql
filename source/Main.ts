@@ -1,6 +1,6 @@
 import * as GQLImport from "graphql-import"
 import * as Yoga from "graphql-yoga"
-import * as S from "./schema"
+import * as S from "./SchemaTypes"
 
 const typeDefs = GQLImport.importSchema(__dirname + "/schema.graphql")
 
