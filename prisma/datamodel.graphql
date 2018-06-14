@@ -1,0 +1,32 @@
+# General
+
+type User {
+  id: ID! @unique
+  email: String! @unique
+  medical_episodes: [MedicalEpisode!]! @relation(name: "MedicalEpisodes")
+  chat_messages: [ChatMessage!]!
+}
+
+type MedicalEpisode {
+  id: ID! @unique
+  resolved: Boolean @default(value: "false")
+  patient: User! @relation(name: "Patient")
+  # If null it means the patient is waiting to be seen
+  practitioner: User @relation(name: "Practitioner")
+  created_at: DateTime!
+  chat_messages: [ChatMessage!]!
+}
+
+# Messaging
+
+type ChatMessage {
+  # interface
+  id: ID! @unique
+  sent_at: DateTime!
+  # If null it means the message has not been delivered to peers yet
+  delivered_at: DateTime
+  medical_episode: MedicalEpisode!
+  # TextMessage
+  content: String!
+  owner: User!
+}

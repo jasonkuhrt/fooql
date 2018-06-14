@@ -1,0 +1,51 @@
+# type User {
+#   id: ID! @unique
+#   name: String!
+# }
+
+# enum EPISODE_STATUS =
+#   WAITING_FOR_PATIENT |
+#   WAITING_FOR_CLINIC |
+#   ACTIVE |
+#   RESOLVED
+
+# type Episode {
+#   id: ID! @unique
+#   status: EPISODE_STATUS
+#   patient: User!
+#   current_practitioner: User
+#   messages: [Message!]!
+#   createdAt: Date
+#   tags: [string!]!
+# }
+
+# union Message =
+#   TextMessage |
+#   RangeInputMessage
+
+# interface MessageBase {
+#   id: ID! @unique
+#   sent_at: Date!
+#   # If null it means the message has not been delivered to peers yet
+#   delivered_at: Date
+# }
+
+# type TextMessage implements MessageBase {
+#   text: string
+#   author: User
+# }
+
+# interface InputMessageBase implements MessageBase {
+#   label: string!
+# }
+
+# type RangeInputMessage implements InputMessageBase  {
+#   label: string
+#   settings: RangeInputSettings
+# }
+
+# type RangeInputSettings {
+#   min: Float!
+#   max: Float!
+#   step_size: Float
+# }
