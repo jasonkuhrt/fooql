@@ -11,8 +11,9 @@ projects:
           url: 'http://localhost:4466'
           subscription: 'ws://localhost:4466'
   gateway:
-    schemaPath: schema.graphql
-    endpoints:
-      dev:
-        url: 'http://localhost:4000'
-        # subscription: 'ws://localhost:4000'
+    schemaPath: source/schema.graphql
+    extensions:
+      endpoints:
+        dev:
+          url: 'http://localhost:4000'
+          # subscription: 'ws://localhost:4000'
